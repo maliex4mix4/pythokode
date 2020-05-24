@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	
+	<h2 class="text-center text-dark mt-4">
+		Your Code History
+	</h2>
+
+	<div class="container w-75 text-center pt-5 pb-3">
+		{% for history in histories %}
+		<div class="container bg-white shadow border border-rounded p-4 mb-5">
+			<ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+			  <li class="nav-item">
+			    <a class="nav-link active" id="code-tab" data-toggle="tab" href="#code" role="tab" aria-controls="code" aria-selected="true">Code</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" id="input-tab" data-toggle="tab" href="#input" role="tab" aria-controls="input" aria-selected="false">Input(s)</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" id="output-tab" data-toggle="tab" href="#output" role="tab" aria-controls="output" aria-selected="false">Output(s)</a>
+			  </li>
+			</ul>
+			<div class="tab-content" id="myTabContent">
+			  <div class="tab-pane fade show active p-3" id="code" role="tabpanel" aria-labelledby="code-tab">
+			  	<div class="container text-light p-2 text-left" style="background: blueviolet; opacity: 0.6;">
+			  		{{history.code_body}}
+			  	</div>
+			  </div>
+			  <div class="tab-pane fade p-3" id="input" role="tabpanel" aria-labelledby="input-tab">
+			  	
+			  	<div class="container text-light p-2 text-left" style="background: blueviolet; opacity: 0.6;">
+			  		{{history.code_inputs}}
+			  	</div>
+			  </div>
+			  <div class="tab-pane fade p-3" id="output" role="tabpanel" aria-labelledby="output-tab">
+			  	
+			  	<div class="container text-light p-2 text-left" style="background: blueviolet; opacity: 0.6;">
+			  		{{history.code_outputs}}
+			  	</div>
+			  </div>
+			</div>
+			<hr/>
+			<p>{{history.date_posted}}</p>
+
+		</div>
+		{% endfor %}
+	</div>
+{% endblock %}

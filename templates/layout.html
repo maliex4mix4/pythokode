@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>PythoKode</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'src/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'src/font/css/font-awesome.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'src/asset/css/styles.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark mb-3 p-4" style="background: blueviolet;">
+  <a class="navbar-brand" href="{% url 'users:login' %}">PythoKode</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nv" aria-controls="nv" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="nv">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'about' %}">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'users:login' %}">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'users:register' %}">Register</a>
+      </li>
+      <!--
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+  	-->
+    </ul>
+  </div>
+</nav>
+	{% block content %}
+
+	{% endblock %}
+
+
+	<script src="{% static 'src/jquery.min.js' %}"></script>
+	<script src="{% static 'src/bootstrap/js/bootstrap.min.js' %}"></script>
+
+	<div class="container-fluid m-2 mt-5 mb-0 text-dark text-center p-5" style="background: lightgrey;">
+		&copy; Copyright 2020 PythoCode.
+	</div>
+
+</body>
+</html>

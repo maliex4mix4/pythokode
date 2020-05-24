@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>PythoKode</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'src/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'src/font/css/font-awesome.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'src/asset/css/styles.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark mb-3 p-4" style="background: blueviolet;">
+  <a class="navbar-brand" href="{% url 'kode:home_default' %}">PythoKode</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nv" aria-controls="nv" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="nv">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'about' %}">About</a>
+      </li>
+      <!--
+      <li class="nav-item">
+        <a class="nav-link" href="#">Leaders Board</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Challenges</a>
+      </li>
+      -->
+      <li class="nav-item dropdown dropleft">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img class="rounded rounded-circle border-0" src="{% static 'images/emoji2.png' %}" width="30" height="30">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'users:edit_profile' %}">Edit Profile</a>
+          <a class="dropdown-item" href="{% url 'kode:code_history' user=user.username %}">Code History</a>
+          
+          <a class="dropdown-item" href="{% url 'users:change_password' %}">Change Password</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item text-danger" href="{% url 'users:logout' %}">Log Out</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<h2 class="text-dark m-2 p-4">
+  Hey, {{ user.username }}!
+</h2>
+	{% block content %}
+
+	{% endblock %}
+
+
+	<script src="{% static 'src/jquery.min.js' %}"></script>
+	<script src="{% static 'src/bootstrap/js/bootstrap.min.js' %}"></script>
+
+	<div class="container-fluid m-2 mt-5 mb-0 text-dark text-center p-5" style="background: lightgrey;">
+		&copy; Copyright 2020 PythoCode.
+	</div>
+
+</body>
+</html>

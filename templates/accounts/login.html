@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+
+	<div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Login</h5>
+                        {% if messages %}
+		 							{% for message in messages %}
+		 								{% if 'success' in message.tags %}
+		 									<div class="alert alert-success" style="border-left:3px solid green;">
+		 										{{ message }}
+		 									</div>
+		 								{% endif %}
+		 									{% if 'error' in message.tags %}
+		 										<div class="alert alert-danger" style="border-left:3px solid red;">
+		 											{{ message }}
+		 										</div>
+		 									{% endif %}
+		 							{% endfor %}
+		 					{% endif %}
+                        <form action="{% url 'users:login' %}" method="post" class="form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form %}
+                            	
+				         		<div class="form-group">
+				                   {% if 'username' in field.name %}
+				                    <label for="{{ field.name }}">{{ field.label }}</label>
+
+				                    <div class="input-group mb-2">
+				                        <input type="username" class="form-control border border-dark" name="{{ field.name }}" placeholder="{{ field.label }}" required>
+				                    </div>
+				                 {% endif %}
+				                 {% if 'password' in field.name %}
+				                    <label for="{{ field.name }}">{{ field.label }}</label>
+
+				                    <div class="input-group mb-2">
+				                        <input type="password" class="form-control border border-dark" name="{{ field.name }}" placeholder="{{ field.label }}" required>
+				                    </div>
+				                 {% endif %}
+				                   	{% if field.errors %}
+				                    	<div class="container error-field alert alert-danger" style="border-left: 4px solid red !important;">
+				                    		{{ field.errors }}
+				                    	</div>
+				                   	{% endif %}
+				                </div>
+				         	{% endfor %}
+	                        <button class="btn btn-md text-light mt-3" style="background-color: blueviolet;" type="submit">
+								Submit
+							</button>
+	                        <hr class="my-4">
+	                        <a class="btn btn-outline-danger" href="{% url 'users:register' %}">
+	                        	Sign Up
+	                        </a>
+	                        <a class="btn btn-outline-primary" href="{% url 'users:change_password' %}">
+	                        	Forget Password ?
+	                        </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

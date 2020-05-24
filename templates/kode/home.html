@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	
+	<h2 class="text-center text-dark mt-4">
+		PythoKode IDE
+	</h2>
+	<div class="container p-3">
+		{% if messages %}
+				{% for message in messages %}
+					{% if 'success' in message.tags %}
+						<div class="alert alert-success" style="border-left:3px solid green;">
+							{{ message }}
+						</div>
+					{% endif %}
+						{% if 'error' in message.tags %}
+							<div class="alert alert-danger" style="border-left:3px solid red;">
+								{{ message }}
+							</div>
+						{% endif %}
+				{% endfor %}
+		{% endif %}
+	</div>
+
+	<form method="post" action="run" class="justify-contents-center mt-5 mb-4">
+		
+		{% csrf_token %}
+		
+		<div class="container text-left p-3">
+			
+					<div class="form-group w-100">
+						<label for="code_body">
+							Write your code here
+						</label>
+						<textarea class="form-control text-success p-3" id="code_body" name="code_body" rows="12" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" style="font-family: cursive;font-size: 1.5em;">{{ body }}</textarea>
+					</div>
+					<div class="form-group w-100">
+					    <label for="code_inpt">Inputs For code (press enter for multiple)</label>
+					    <textarea name='code_inpt' class="form-control" id="code_inpt" rows="4">{{ input }}</textarea>
+					 </div>
+					<div class="form-group w-100">
+						<label for="code_out">
+							Output:
+						</label>
+						<textarea name="code_out" class="form-control" id="code_out" rows="6" disabled>{{output}}</textarea>
+					</div>
+					<!--
+	            	<div class="container error-field alert alert-danger" style="border-left: 4px solid red !important;">
+	            		{{ field.errors }}
+	            	</div>
+	            -->
+			<button class="btn btn-lg text-light mt-3" style="background-color: blueviolet;" type="submit">
+				Run Code <i class="fa fa-send"></i>
+			</button>
+		</div>
+	</form>
+
+{% endblock %}

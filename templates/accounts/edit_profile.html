@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+	<div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Edit Profile</h5>
+                        	{% if messages %}
+		 							{% for message in messages %}
+		 								{% if 'success' in message.tags %}
+		 									<div class="alert alert-success" style="border-left:3px solid green;">
+		 										{{ message }}
+		 									</div>
+		 								{% endif %}
+		 									{% if 'error' in message.tags %}
+		 										<div class="alert alert-danger" style="border-left:3px solid red;">
+		 											{{ message }}
+		 										</div>
+		 									{% endif %}
+		 							{% endfor %}
+		 					{% endif %}
+				         	<div class="form-group">
+    							<label for="user" class="">Username</label>
+    							<input type="username" class="form-control" name="user" value="{{ user.username }}" readonly>	
+				         	</div>
+                        <form action="{% url 'users:edit_profile' %}" method="post" class="form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form %}
+                            	
+				         		<div class="form-group">
+				                   {% if 'email' in field.name %}
+				                    <label for="{{ field.name }}">{{ field.label }}</label>
+
+				                    <div class="input-group mb-2">
+				                        <input type="email" class="form-control border border-dark" name="{{ field.name }}" placeholder="{{ field.label }}" required>
+				                    </div>
+				                 {% endif %}
+				                 {% if 'bio' in field.name %}
+				                    <label for="{{ field.name }}">{{ field.label }}</label>
+
+				                    <div class="input-group mb-2">
+				                        <textarea class="form-control border border-dark" name="{{ field.name }}" rows="7">I am {{ user.username }}, </textarea>
+				                    </div>
+				                 {% endif %}
+				                   	{% if field.errors %}
+				                    	<div class="container error-field alert alert-danger" style="border-left: 4px solid red !important;">
+				                    		{{ field.errors }}
+				                    	</div>
+				                   	{% endif %}
+				                </div>
+				         	{% endfor %}
+
+				         	<button class="btn btn-md text-light mt-3" style="background-color: blueviolet;" type="submit">
+								Edit
+							</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
