@@ -17,7 +17,7 @@
   <div class="collapse navbar-collapse" id="nv">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link text-light" href="{% url 'about' %}">About</a>
+        <a class="nav-link text-light" href="{% url 'kode:leaderboard' %}">LeadersBoard</a>
       </li>
       <!--
       <li class="nav-item">
@@ -34,7 +34,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{% url 'users:edit_profile' %}">Edit Profile</a>
           <a class="dropdown-item" href="{% url 'kode:code_history' user=user.username %}">Code History</a>
-          
+
           <a class="dropdown-item" href="{% url 'users:change_password' %}">Change Password</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item text-danger" href="{% url 'users:logout' %}">Log Out</a>

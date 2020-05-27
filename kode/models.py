@@ -8,6 +8,7 @@ class CodeProfile(models.Model):
 	code_body = models.TextField()
 	code_inputs = models.TextField(default='None')
 	code_outputs = models.TextField(default='None')
+	code_points = models.IntegerField(default=0)
 	date_posted = models.DateTimeField(auto_now=True)
 
 	def __str__(self):
