@@ -25,7 +25,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = '5jwzt7k_^tqii69y5-vs67u&eb$7d$r=ztiueyp!*^vo_wq#$v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['pythokod.herokuapp.com', '127.0.0.1']
 
